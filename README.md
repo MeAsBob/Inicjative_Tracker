@@ -1,0 +1,2 @@
+Witam
+Teraz żegnam
