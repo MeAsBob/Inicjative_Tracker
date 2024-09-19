@@ -1,0 +1,53 @@
+[gd_scene load_steps=2 format=3 uid="uid://d1adv0axh7yl3"]
+
+[ext_resource type="Script" path="res://Tracker.gd" id="1_gr0rf"]
+
+[node name="Node2D" type="Control"]
+layout_mode = 3
+anchor_right = 0.263
+anchor_bottom = 0.347
+offset_right = -302.976
+offset_bottom = -224.856
+script = ExtResource("1_gr0rf")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 9.0
+offset_right = 1152.0
+offset_bottom = 650.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="SpinBox" type="SpinBox" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+rounded = true
+
+[node name="Add" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "ADD"
+
+[node name="Sort" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "SORT
+"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
+clip_contents = false
+layout_mode = 2
+auto_translate = false
+localize_numeral_system = false
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+scroll_deadzone = 100
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer"]
+layout_mode = 2
+
+[connection signal="pressed" from="VBoxContainer/Add" to="." method="_on_add_pressed"]
+[connection signal="pressed" from="VBoxContainer/Sort" to="." method="_on_sort_pressed"]
+[connection signal="ready" from="VBoxContainer/ScrollContainer" to="." method="_on_scroll_container_ready"]
