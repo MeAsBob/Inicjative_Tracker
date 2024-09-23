@@ -1,40 +1,74 @@
-[gd_scene load_steps=2 format=3 uid="uid://d1adv0axh7yl3"]
+[gd_scene load_steps=7 format=3 uid="uid://d1adv0axh7yl3"]
 
 [ext_resource type="Script" path="res://Tracker.gd" id="1_gr0rf"]
+[ext_resource type="Theme" uid="uid://bcnt5nrwspi2u" path="res://Default.tres" id="2_t388d"]
+[ext_resource type="Texture2D" uid="uid://cq1ag40kwauh5" path="res://Paper_pls2.png" id="2_uk6w4"]
+
+[sub_resource type="Shortcut" id="Shortcut_5etb0"]
+
+[sub_resource type="Shortcut" id="Shortcut_7x0ic"]
+
+[sub_resource type="Shortcut" id="Shortcut_e5w68"]
 
 [node name="Node2D" type="Control"]
 layout_mode = 3
-anchor_right = 0.263
-anchor_bottom = 0.347
+anchor_right = 1.0
+anchor_bottom = 0.997
 offset_right = -302.976
 offset_bottom = -224.856
 script = ExtResource("1_gr0rf")
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(576, 324)
+scale = Vector2(1.92, 1.52471)
+texture = ExtResource("2_uk6w4")
+
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.357
+anchor_bottom = 0.583
 offset_left = 1.0
 offset_top = 9.0
-offset_right = 1152.0
-offset_bottom = 650.0
+offset_right = -0.125732
+offset_bottom = 404.44
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_direction = 2
 layout_mode = 2
 
-[node name="LineEdit" type="LineEdit" parent="VBoxContainer/HBoxContainer"]
+[node name="Name" type="LineEdit" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_t388d")
+expand_to_text_length = true
+clear_button_enabled = true
 
-[node name="SpinBox" type="SpinBox" parent="VBoxContainer/HBoxContainer"]
+[node name="Inicjative" type="SpinBox" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 rounded = true
 
-[node name="Add" type="Button" parent="VBoxContainer"]
+[node name="Add" type="Button" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
-text = "ADD"
+shortcut = SubResource("Shortcut_5etb0")
+text = "               ADD              "
 
 [node name="Sort" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+disabled = true
 text = "SORT
 "
+
+[node name="Reset" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+disabled = true
+shortcut = SubResource("Shortcut_7x0ic")
+text = "RESET"
+
+[node name="Next_Turn" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+disabled = true
+shortcut = SubResource("Shortcut_e5w68")
+text = "NASTĘPNA TURA"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
 clip_contents = false
@@ -48,6 +82,32 @@ scroll_deadzone = 100
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer"]
 layout_mode = 2
 
-[connection signal="pressed" from="VBoxContainer/Add" to="." method="_on_add_pressed"]
+[node name="Edit" type="Popup" parent="."]
+disable_3d = true
+mode = 1
+title = "Edycja"
+initial_position = 2
+size = Vector2i(300, 250)
+
+[node name="Box" type="HBoxContainer" parent="Edit"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Name_Edit" type="LineEdit" parent="Edit/Box"]
+layout_mode = 2
+theme_override_constants/minimum_character_width = 15
+placeholder_text = "Nowa Nazwa"
+
+[node name="Inicjative_Edit" type="SpinBox" parent="Edit/Box"]
+layout_mode = 2
+
+[node name="Save" type="Button" parent="Edit/Box"]
+layout_mode = 2
+text = "Zapisz"
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Add" to="." method="_on_add_pressed"]
 [connection signal="pressed" from="VBoxContainer/Sort" to="." method="_on_sort_pressed"]
+[connection signal="pressed" from="VBoxContainer/Reset" to="." method="_on_reset_pressed"]
+[connection signal="pressed" from="VBoxContainer/Next_Turn" to="." method="_on_next_turn_pressed"]
 [connection signal="ready" from="VBoxContainer/ScrollContainer" to="." method="_on_scroll_container_ready"]
+[connection signal="pressed" from="Edit/Box/Save" to="." method="_on_save_pressed"]

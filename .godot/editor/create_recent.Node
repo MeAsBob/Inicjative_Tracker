@@ -1,7 +1,10 @@
+Sprite2D
+Popup
+HBoxContainer
+Node
+SpinBox
+LineEdit
 Button
 Control
 VBoxContainer
 ScrollContainer
-SpinBox
-LineEdit
-HBoxContainer
